@@ -43,7 +43,7 @@ resource "aws_eks_cluster" "cluster" {
   }
 
 
-resource "aws_security_group" "alb_sg" {
+resource "aws_security_group" "sg" {
   name                 =    "${var.env}-sg"
   description          =    "Allow TLS inbound traffic and all outbound traffic"
   vpc_id               =    var.vpc_id
