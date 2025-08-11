@@ -6,7 +6,7 @@ env                          = "dev"
 
 module "VPC"{
 source                       = "./module/VPC"
-env                          = "dev"
+env                          = var.env
 vpc_cidr_block               = var.vpc_cidr_block
 frontendServers              = var.frontendServers
 availability_zone            = var.availability_zone

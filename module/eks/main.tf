@@ -9,7 +9,7 @@ resource "aws_eks_cluster" "cluster" {
  resource "aws_eks_node_group" "node" {
    cluster_name    = aws_eks_cluster.node-role.name
    node_group_name = "eks-node-${var.env}"
-   node_role_arn   = aws_iam_role.node.arn
+   node_role_arn   = aws_iam_role.node-role.arn
    subnet_ids      =  var.subnet_ids
 
    scaling_config {
