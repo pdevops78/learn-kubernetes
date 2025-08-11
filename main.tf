@@ -2,7 +2,7 @@ module "eks" {
 source = "./module/eks"
 subnet_id = module.VPC.backend
 env                          = "dev"
-vpc_id    = var.vpc_id
+vpc_id    = module.VPC.vpc_id
 }
 
 module "VPC"{
