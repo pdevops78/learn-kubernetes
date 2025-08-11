@@ -60,6 +60,6 @@ resource "aws_security_group" "alb_sg" {
       cidr_blocks      =    ["0.0.0.0/0"]
      }
   tags = {
-     Name = "${var.env}-alb"
+     Name = "${var.env}-lt"
    }
   }
