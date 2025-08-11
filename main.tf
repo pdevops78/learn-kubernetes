@@ -3,7 +3,6 @@ source = "./module/eks"
 subnet_id = module.VPC.backend
 env                          = "dev"
 vpc_id    = module.VPC.vpc_id
-instance_type = "t3.medium"
 }
 
 module "VPC"{
