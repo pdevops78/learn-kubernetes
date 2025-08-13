@@ -13,8 +13,8 @@ spec:
     - name: nginx-content
       image: pavanidevops78/kubernetes:c1
       volumeMounts:
-        - name: nginx-path
+        - name: nginx-content
           mountPath: /usr/share/nginx/html
   volumes:
-    - name: nginx-path
+    - name: nginx-content
       emptyDir: {}
