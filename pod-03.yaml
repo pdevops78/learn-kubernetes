@@ -1,4 +1,3 @@
-# sharable from one container to another container
 apiVersion: v1
 kind: Pod
 metadata:
@@ -16,5 +15,5 @@ spec:
         - name: nginx-path
           mountPath: /usr/share/nginx/html
   volumes:
-    - name: nginx-path
-      emptyDir: {}
+   - name: nginx-path
+     emptyDir: {}
