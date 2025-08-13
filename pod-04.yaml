@@ -11,7 +11,7 @@ spec:
           mountPath: /usr/share/nginx/html
   initContainers:
     - name: nginx-content
-      image:  pavanidevops78/kubernetes:c1
+      image:  pavanidevops78/kubernetes:c3
       volumeMounts:
         - name: nginx-path
           mountPath: /usr/share/nginx/html
