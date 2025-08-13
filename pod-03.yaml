@@ -1,0 +1,20 @@
+# sharable from one container to another container
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-03
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      volumeMounts:
+        - name: nginx-content
+          mountPath: /usr/share/nginx/html
+    - name: nginx-content
+      image: pavanidevops78
+      volumeMounts:
+        - name: nginx-path
+          mountPath: /usr/share/nginx/html
+  volumes:
+    - name: nginx-path
+      emptyDir: {}
