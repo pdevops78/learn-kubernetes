@@ -4,5 +4,4 @@ RUN                curl -L -o /tmp/vault.zip https://releases.hashicorp.com/vaul
 RUN                unzip /tmp/vault.zip
 RUN                mv vault /bin ; rm -rf /tmp/vault.zip
 COPY               run.sh /
-CMD                []
 ENTRYPOINT         ["bash","/run.sh"]
