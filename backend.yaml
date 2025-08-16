@@ -8,7 +8,7 @@ spec:
       emptyDir: {}
   initContainers:
     - name: vault-secrets
-      image: pavanidevops78/kubernetes:v4
+      image: pavanidevops78/kubernetes:k1
       env:
        - name: VAULT_ADDR
          value: https://3.86.88.154:8200
