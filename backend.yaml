@@ -9,7 +9,7 @@ spec:
         sizeLimit: 5Mi
   initContainers:
     - name: vault-secrets
-      image: pavanidevops78/kubernetes:v5
+      image: pavanidevops78/kubernetes:p2
       env:
         - name: VAULT_ADDR
           value: "https://3.86.158.194:8200"
@@ -28,7 +28,7 @@ spec:
           mountPath: /data
   containers:
     - name: backend
-      image:  pavanidevops78/kubernetes:v3
+      image:  pavanidevops78/kubernetes:p1
       volumeMounts:
         - name: secrets
           mountPath: /data
