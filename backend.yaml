@@ -24,7 +24,7 @@ spec:
 
   containers:
     - name: backend
-      image:  pavanidevops78/kubernetes:r1
+      image:  pavanidevops78/kubernetes:r2
       volumeMounts:
         - name: vault-path
           mountPath: /data
