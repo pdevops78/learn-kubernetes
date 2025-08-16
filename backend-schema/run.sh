@@ -1,5 +1,5 @@
 source /data/secrets.txt
-
+cat  /data/secrets.txt
 if [ -z "${DB_HOST}" ]; then
   echo DB_HOST is missing
   exit 1
