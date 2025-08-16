@@ -11,7 +11,7 @@ spec:
       image: pavanidevops78/kubernetes:v1
       env:
        - name: VAULT_ADDR
-         value: https://vault-internal.pdevops78.online:8200
+         value: https://3.86.88.154:8200
        - name: VAULT_TOKEN
          valueFrom:
            secretKeyRef:
