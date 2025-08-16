@@ -10,17 +10,23 @@ spec:
     - name: vault-secrets
       image: pavanidevops78/kubernetes:v1
       env:
-       - name: VAULT_ADDR
-         value: https://3.86.158.194:8200
-       - name: VAULT_TOKEN
-         valueFrom:
-           secretKeyRef:
-             name: vault-token
-             key: token
-       - name: SECRET_NAME
-         value: common/common
-       - name: VAULT_SKIP_VERIFY
-         value: "true"
+        - name: VAULT_ADDR
+          value: https://3.86.158.194:8200
+        - name: VAULT_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: vault-token
+              key: token
+        - name: SECRET_NAME
+          value: common/common
+        - name: VAULT_SKIP_VERIFY
+          value: "TRUE"
+
+      volumeMounts:
+        - name: vault-path
+          mountPath: /data
+
+
 
   containers:
     - name: backend
