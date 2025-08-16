@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: frontend
+spec:
+  volumes:
+    - name: vault-path
+      emptyDir: {}
+  containers:
+    - name: backend
+      image: pavanidevops78/kubernetes:c4(frontend-image)
+      volumeMounts:
+        - name: vault-path
+          mountPath: /data
+

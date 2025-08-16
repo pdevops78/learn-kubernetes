@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: configMap
+metadata:
+  name: configmap-01
+data:
+  username: axis
+  password: axis123
+
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-map
+spec:
+  containers:
+    name: nginx
+    image: nginx
+    env:
+     - name: username
+       valueFrom:
+         configMapRef:
+           name: configmap-01
+           key: username
+     - name: password
+       valueFrom:
+         configMapRef:
+           name: configmap-01
+           key: password

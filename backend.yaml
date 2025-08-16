@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: backend
+spec:
+  volumes:
+    - name: vault-path
+      emptyDir: {}
+  initContainers:
+    - name: vault-secrets
+      image: pavanidevops78/kubernetes:c4(vault-image)
+      env:
+       - name: VAULT_ADDR
+         value: https://vault-internal.pdevops78.online:8200
+       - name: VAULT_TOKEN
+         valueFrom:
+           secretKeyRef:
+             name: vault-token
+             key: vault
+       - name: SECRET_NAME
+         value: common/common
+       - name: VAULT_SKIP_VERIFY
+         value: "true"
+
+  containers:
+    - name: backend
+      image: pavanidevops78/kubernetes:c4(backend-image)
+      volumeMounts:
+        - name: vault-path
+          mountPath: /data
+

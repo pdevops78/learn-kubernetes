@@ -13,3 +13,62 @@ create a pod
 configMap and Secret, how to access configMap and secret in pod?
 How to retrieve the data from vault
 
+
+1. export vault_address=https://vault-internal.pdevops78.online:8200
+2. export VAULT_TOKEN=
+3. 
+vault login vault_token
+vault kv get common/common
+vault tls_skip_verify kv get -mount=secret common
+vault kv get common/common | sed -n -e '/=Data=/,$p' | grep -Ev '= Data =|^key|^---'| awk '{print "export "$1"="$2}' 
+
+run manually:
+==============
+* docker build .
+* docker images
+* docker run -it --entrypoint bash container-id: go inside container
+* docker run -e VAULT_ADDR="" -e VAULT_TOKEN="" -e SECRET_NAME="" -e VAULT_SKIP_VERIFY=true "container-id"
+* to create a token in k8
+  kubectl create secret generic vault-token --from-literal=token=my-secret-value
+* kubectl get secret vault-token -o yaml
+or we have to write in yaml file
+
+schema:
+=======
+kubectl get pods -o wide
+
+
+
+docker basics:
+==============
+docker run nginx, run in our terminal
+docker run docker.io/nginx
+to run in detached mode : docker run -d docker.io/nginx
+docker ps
+docker inspect "container-id"
+docker run -P -d docker.io/nginx , to expose the app outside use -p
+docker ps ; here we can able to see the ports
+to customize port: docker run -p 1000:80 docker.io/nginx , here 1000 is a host side and 80 is a container side port
+
+basic docker:
+==============
+FROM     nginx
+COPY     index.html /usr/share/nginx/html/index.html
+
+steps:
+======
+1. docker build .
+2. docker run -d "image-id"
+3. docker run -P -d "contaienr id"
+4. docker ps 
+5. expose app based on port
+6. docker inspect "container-id" : to know container info. 
+7. search one ip : curl 10.0....
+8. docker exec -it "container-id" bash
+9. caddy file path: cd /etc/caddy ; ls ; cat Caddyfile
+10. docker run docker.io/redhat/ubi9 env, to get env vars
+11. docker run -e url=google.com docker.io/redhat/ubi9 env
+12. add newrelic: latest in package.json, once install through package.json no need to install as a package manager in ansible
+13. docker run -it docker.io/node bash
+14. 
+
