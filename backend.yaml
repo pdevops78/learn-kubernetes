@@ -4,7 +4,7 @@ metadata:
   name: backend
 spec:
   volumes:
-    - name: vault-path
+    - name: secrets
       emptyDir:
         sizeLimit: 5Mi
   initContainers:
@@ -24,15 +24,12 @@ spec:
           value: "TRUE"
 
       volumeMounts:
-        - name: vault-path
+        - name: secrets
           mountPath: /data
-
-
-
   containers:
     - name: backend
       image:  pavanidevops78/kubernetes:v3
       volumeMounts:
-        - name: vault-path
+        - name: secrets
           mountPath: /data
 
