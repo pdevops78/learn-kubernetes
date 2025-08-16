@@ -15,7 +15,7 @@ kind: Service
 metadata:
   name: service-01
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: my-app
   ports:
