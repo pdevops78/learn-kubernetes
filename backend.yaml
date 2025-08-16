@@ -8,7 +8,7 @@ spec:
       emptyDir: {}
   initContainers:
     - name: vault-secrets
-      image: pavanidevops78/kubernetes:c4(vault-image)
+      image: pavanidevops78/kubernetes:v1
       env:
        - name: VAULT_ADDR
          value: https://vault-internal.pdevops78.online:8200
@@ -16,7 +16,7 @@ spec:
          valueFrom:
            secretKeyRef:
              name: vault-token
-             key: vault
+             key: token
        - name: SECRET_NAME
          value: common/common
        - name: VAULT_SKIP_VERIFY
