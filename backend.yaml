@@ -28,6 +28,13 @@ spec:
       volumeMounts:
         - name: secrets
           mountPath: /data
+
+    - name: vault-secrets
+      image: pavanidevops78/kubernetes:s1
+      volumeMounts:
+        - name: secrets
+          mountPath: /data
+
   containers:
     - name: backend
       image:  pavanidevops78/kubernetes:p1
