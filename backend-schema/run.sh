@@ -27,6 +27,6 @@ fi
 git clone https://github.com/pdevops78/${project_name}-${component}
 cd ${project_name}-${component}
 mysql -h${DB_HOST} -u${rds_name} -p${rds_password} <schema/${component}.sql
-
+echo mysql -h${DB_HOST} -u${rds_name} -p${rds_password} <schema/${component}.sql
 
 # required to in vault ui , project_name and component
