@@ -2,7 +2,8 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: frontend
-  labels: nginx
+  labels:
+    name: nginx
 spec:
   volumes:
     - name: secrets
