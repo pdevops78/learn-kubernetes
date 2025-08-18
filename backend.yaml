@@ -14,7 +14,7 @@ spec:
       image: pavanidevops78/kubernetes:p2
       env:
         - name: VAULT_ADDR
-          value: "https://13.222.254.131:8200"
+          value: "https://vault-internal.pdevops78.online:8200"
         - name: VAULT_TOKEN
           valueFrom:
             secretKeyRef:
@@ -29,7 +29,7 @@ spec:
         - name: secrets
           mountPath: /data
 
-    - name: vault-secrets
+    - name: schema
       image: pavanidevops78/kubernetes:s1
       volumeMounts:
         - name: secrets
