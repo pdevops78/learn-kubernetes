@@ -26,7 +26,7 @@ fi
 
 git clone https://github.com/pdevops78/${project_name}-${component}
 cd expense-backend
-mysql -h${DB_HOST} -u${rds_name} -p${rds_password} < /app/schema/backend.sql
+mysql -h${DB_HOST} -u${rds_name} -p${rds_password} <schema/backend.sql
 
 
 # required to in vault ui , project_name and component
