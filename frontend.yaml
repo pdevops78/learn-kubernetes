@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: frontend
   labels:
-    name: nginx
+    appName: nginx
 spec:
   volumes:
     - name: secrets
@@ -23,7 +23,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    name: nginx
+    appName: nginx
   ports:
     - protocol: TCP
       port: 80
