@@ -25,8 +25,8 @@ if [ -z  "${component}" ]; then
 fi
 
 git clone https://github.com/pdevops78/${project_name}-${component}
-cd expense-backend
-mysql -h${DB_HOST} -u${rds_name} -p${rds_password} <schema/backend.sql
+cd {project_name}-${component}
+mysql -h${DB_HOST} -u${rds_name} -p${rds_password} <schema/${component}.sql
 
 
 # required to in vault ui , project_name and component
