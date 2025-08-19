@@ -1,0 +1,14 @@
+to install helm chart
+======================
+curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+helm install myapp ./mychart
+helm upgrade myapp ./mychart
+helm upgrade -i myapp ./mychart
+helm version
+
+for multiple pods creation required:
+====================================
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm search repo bitnami
+
+

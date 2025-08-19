@@ -37,7 +37,7 @@ spec:
 
   containers:
     - name: backend
-      image:  pavanidevops78/kubernetes:p1
+      image: pavanidevops78/kubernetes:p1
       volumeMounts:
         - name: secrets
           mountPath: /data

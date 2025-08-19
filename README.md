@@ -72,3 +72,10 @@ steps:
 13. docker run -it docker.io/node bash
 14. 
 
+
+
+argocd:
+=======
+kubectl get svc
+kubectl get svc -n argocd
+kubectl edit svc -n argocd : change servicetype as LoadBalancer instead of ClusterIP
