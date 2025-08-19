@@ -5,7 +5,7 @@ metadata:
   labels:
     name: {{ .Values.metadata.name }}
 spec:
-{{- if .Values.initContainers.enabled }}
+
   volumes:
     - name: secrets
       emptyDir:
@@ -35,15 +35,15 @@ spec:
       volumeMounts:
         - name: secrets
           mountPath: /data
-{{- end }}
+
   containers:
     - name: backend
       image: pavanidevops78/kubernetes:{{ .Values.initContainers.cont_imageVersion }}
-{{- if .Values.initContainers.enabled }}
+
       volumeMounts:
         - name: secrets
           mountPath: /data
-{{- end }}
+
 
 ---
 apiVersion: v1
