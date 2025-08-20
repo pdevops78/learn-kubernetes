@@ -51,7 +51,6 @@ kind: Service
 metadata:
   name: service-01
 spec:
-  type: ClusterIP
   selector:
     name: backend
   ports:
