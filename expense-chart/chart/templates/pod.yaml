@@ -1,11 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: backend
+  name: {{ .Values.metadata.name }}
   labels:
     appName: {{ .Values.labels.appName }}
 spec:
-
   volumes:
     - name: secrets
       emptyDir:
@@ -37,7 +36,7 @@ spec:
           mountPath: /data
 
   containers:
-    - name: backend
+    - name: {{ .Values.component }}
       image: pavanidevops78/kubernetes:{{ .Values.containers.cont_imageVersion }}
 
       volumeMounts:

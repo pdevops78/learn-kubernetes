@@ -7,7 +7,7 @@ spec:
      appName: {{ .Values.labels.appName }}
   ports:
     - name: http
-      protocol: TCP
-      port: 80
-      targetPort: 8080
+      protocol: {{ .Values.ports.protocol }}
+      port: {{ .Values.ports.port }}
+      targetPort: {{ .Values.ports.targetPort }}
   type: {{ .Values.service.type }}
