@@ -4,8 +4,8 @@ metadata:
   name: {{ .Values.metadata.name }}
 spec:
   selector:
-     appName: {{ .Values.labels.appName }}
-     project_Name: {{ .Values.labels.project_name }}
+     appName: {{ .Values.selector.appName }}
+     project_Name: {{ .Values.selector.project_name }}
   ports:
     - name: http
       protocol: {{ .Values.ports.protocol }}

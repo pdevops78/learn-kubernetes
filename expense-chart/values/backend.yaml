@@ -4,6 +4,9 @@ component: backend
 labels:
   appName: backend
   project_name: expense
+selector:
+  appName: backend
+  project_name: expense
 initContainers:
   imageVersion: p2
   enabled: true

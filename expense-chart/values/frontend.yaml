@@ -4,6 +4,9 @@ component: frontend
 labels:
   appName: frontend
   project_name: expense
+selector:
+  appName: frontend
+  project_name: expense
 initContainers:
   enabled: false
 containers:
