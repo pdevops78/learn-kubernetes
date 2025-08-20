@@ -39,8 +39,8 @@ spec:
 {{- end }}
 
   containers:
-    - name: {{ .Values.containers.name }}
-      image: pavanidevops78/kubernetes:f1
+    - name: {{ .Values.component }}
+      image: pavanidevops78/kubernetes:{{ .Values.containers.cont_imageVersion }}
 {{- if .Values.initContainers.enabled }}
       volumeMounts:
         - name: secrets
