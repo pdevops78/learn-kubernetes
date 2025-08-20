@@ -10,7 +10,7 @@ schema:
   schema_imageVersion: s7
 containers:
   cont_imageVersion: p1
-component: backend
+  name: backend
 service:
   type: ClusterIP
 ports:

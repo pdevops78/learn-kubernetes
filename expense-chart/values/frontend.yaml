@@ -4,10 +4,10 @@ initContainers:
   enabled: false
 labels:
   appName: frontend
+  project_name: expense
 containers:
   cont_imageVersion: f1
-project_name: expense
-component: frontend
+  name: frontend
 service:
   type: LoadBalancer
 ports:
