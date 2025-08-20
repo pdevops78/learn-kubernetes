@@ -45,16 +45,6 @@ spec:
           mountPath: /data
 
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: service-01
-spec:
-  selector:
-    name: backend
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
+
+
 
