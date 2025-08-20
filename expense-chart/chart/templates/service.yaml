@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: frotend
+  name: {{ .Values.metadata.name }}
 spec:
   selector:
-     appName: frontend
-     project_Name: expense
+     appName: {{ .Values.labels.appName }}
+     project_Name: {{ .Values.labels.project_name }}
   ports:
     - name: http
-      protocol: TCP
-      port: 80
-      targetPort: 8080
+      protocol: {{ .Values.ports.protocol }}
+      port: {{ .Values.ports.port }}
+      targetPort: {{ .Values.ports.targetPort }}
   type: {{ .Values.service.type }}

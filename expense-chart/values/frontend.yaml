@@ -1,5 +1,6 @@
 metadata:
   name: frontend
+component: frontend
 labels:
   appName: frontend
   project_name: expense
