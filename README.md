@@ -79,3 +79,22 @@ argocd:
 kubectl get svc
 kubectl get svc -n argocd
 kubectl edit svc -n argocd : change servicetype as LoadBalancer instead of ClusterIP
+
+
+argocd:
+-------
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl get svc 
+kubectl edit svc argocd-server (or)
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+kubectl get svc argocd-server -n argocd -o=jsonpath='{.status.loadBalancer.ingress[0].ip}'
+to retrieve password simply:
+============================
+argocd admin initial-password -n argocd
+here username is "admin"
+to create argocd application:
+argocd app create guestbook --repo https://github.com/pdevops78/learn-kubernetes.git --path guestbook --dest-server https://kubernetes.default.svc --dest-namespace default.svc
+
+argocd app create backend --repo https://github.com/devps23/eks-helm-argocd.git --path expense-chart/chart --upsert --dest-server https://kubernetes.default.svc --dest-namespace default.svc --grpc-web --values values/backend.yaml
+argocd app sync guestbook
