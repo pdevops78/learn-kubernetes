@@ -31,14 +31,14 @@ spec:
           mountPath: /data
 
     - name: schema
-      image: pavanidevops78/kubernetes:{{ .Values.initContainers.schema_imageVersion }}
+      image: pavanidevops78/kubernetes:{{ .Values.schema.schema_imageVersion }}
       volumeMounts:
         - name: secrets
           mountPath: /data
 
   containers:
     - name: backend
-      image: pavanidevops78/kubernetes:{{ .Values.initContainers.cont_imageVersion }}
+      image: pavanidevops78/kubernetes:{{ .Values.containers.cont_imageVersion }}
 
       volumeMounts:
         - name: secrets
