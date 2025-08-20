@@ -1,5 +1,7 @@
 metadata:
   name: backend
+labels:
+  appName: backend
 initContainers:
   imageVersion: p2
   enabled: true
@@ -9,6 +11,7 @@ containers:
   cont_imageVersion: p1
 project_name: expense
 component: backend
-serviceType: ClusterIP
+service:
+  type: ClusterIP
 
 

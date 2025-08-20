@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: backend
   labels:
-    name: {{ .Values.metadata.name }}
+    appName: {{ .Values.labels.appName }}
 spec:
 
   volumes:

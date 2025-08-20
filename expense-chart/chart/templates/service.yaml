@@ -1,11 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: service-01
+  name: {{ .Values.metadata.name }}
 spec:
   selector:
-    name: backend
+     appName: {{ .Values.labels.appName }}
   ports:
-    - protocol: TCP
+    - name: http
+      protocol: TCP
       port: 80
-      targetPort: 80
+      targetPort: 8080
+  type: {{ .Values.service.type }}
