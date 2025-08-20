@@ -1,5 +1,7 @@
 metadata:
   name: frontend
+initContainers:
+  enabled: false
 labels:
   appName: frontend
 containers:
