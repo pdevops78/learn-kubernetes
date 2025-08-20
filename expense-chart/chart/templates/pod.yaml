@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: {{ .Values.metadata.name }}
+  name: frontend
   labels:
-    appName: {{ .Values.labels.appName }}
-    project_Name: {{ .Values.labels.project_name }}
+    appName: frontend
+    project_Name: expense
 spec:
 {{- if .Values.initContainers.enabled }}
   volumes:
@@ -40,7 +40,7 @@ spec:
 
   containers:
     - name: {{ .Values.containers.name }}
-      image: pavanidevops78/kubernetes:{{ .Values.containers.cont_imageVersion }}
+      image: pavanidevops78/kubernetes:f1
 {{- if .Values.initContainers.enabled }}
       volumeMounts:
         - name: secrets

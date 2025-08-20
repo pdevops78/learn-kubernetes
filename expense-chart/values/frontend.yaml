@@ -1,10 +1,10 @@
 metadata:
   name: frontend
-initContainers:
-  enabled: false
 labels:
   appName: frontend
   project_name: expense
+initContainers:
+  enabled: false
 containers:
   cont_imageVersion: f1
   name: frontend
@@ -14,5 +14,3 @@ ports:
   protocol: TCP
   port: 80
   targetPort: 80
-
-
