@@ -1,0 +1,16 @@
+metadata:
+  name: frontend
+labels:
+  appName: frontend
+containers:
+  cont_imageVersion: f1
+project_name: expense
+component: frontend
+service:
+  type: LoadBalancer
+ports:
+  protocol: TCP
+  port: 80
+  targetPort: 80
+
+

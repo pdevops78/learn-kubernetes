@@ -4,7 +4,9 @@ metadata:
   name: {{ .Values.metadata.name }}
   labels:
     appName: {{ .Values.labels.appName }}
+    project_Name: {{ .Values.labels.project_name }}
 spec:
+{{- if .Values.initContainers.enabled }}
   volumes:
     - name: secrets
       emptyDir:
@@ -34,14 +36,16 @@ spec:
       volumeMounts:
         - name: secrets
           mountPath: /data
+{{- end }}
 
   containers:
     - name: {{ .Values.component }}
       image: pavanidevops78/kubernetes:{{ .Values.containers.cont_imageVersion }}
-
+{{- if .Values.initContainers.enabled }}
       volumeMounts:
         - name: secrets
           mountPath: /data
+{{- end }}
 
 
 

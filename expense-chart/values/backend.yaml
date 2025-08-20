@@ -2,6 +2,7 @@ metadata:
   name: backend
 labels:
   appName: backend
+  project_name: expense
 initContainers:
   imageVersion: p2
   enabled: true
@@ -9,7 +10,6 @@ schema:
   schema_imageVersion: s7
 containers:
   cont_imageVersion: p1
-project_name: expense
 component: backend
 service:
   type: ClusterIP
