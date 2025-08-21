@@ -98,3 +98,27 @@ argocd app create guestbook --repo https://github.com/pdevops78/learn-kubernetes
 
 argocd app create backend --repo https://github.com/devps23/eks-helm-argocd.git --path expense-chart/chart --upsert --dest-server https://kubernetes.default.svc --dest-namespace default.svc --grpc-web --values values/backend.yaml
 argocd app sync guestbook
+
+argocd app
+argocd app sync --help
+how to sync automatically in argocd?
+argocd app set frontend --parameter imageVersion=v3
+argocd app sync frontend
+kubectl get configmap -A
+kubectl get configmap -n kube-system aws-auth -o yaml
+
+
+https://www.youtube.com/watch?v=bu0M2y2g1m8: OIDC
+
+
+
+replicaset:
+===========
+kubectl get pods
+kubectl get pod frontend-00 -o yaml
+kubectl get pod frontend-00 -o yaml | grep image
+kubectl get replicaset
+kubectl get replicaset frontend -o yaml
+
+
+

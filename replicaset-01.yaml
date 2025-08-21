@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ReplicaSet
+metadata:
+  name: frontend
+  labels:
+    app: guestbook
+    tier: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        tier: frontend
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.15
+
+
+# if there is any changes in the pod replicaset did not update to overcome this problem use Deployment Kind
