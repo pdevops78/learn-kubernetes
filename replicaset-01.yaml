@@ -3,16 +3,18 @@ kind: ReplicaSet
 metadata:
   name: frontend
   labels:
-    app: guestbook
+    app: expense
     tier: frontend
 spec:
   replicas: 3
   selector:
     matchLabels:
+      app: expense
       tier: frontend
   template:
     metadata:
       labels:
+        app: expense
         tier: frontend
     spec:
       containers:
