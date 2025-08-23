@@ -121,4 +121,13 @@ kubectl get replicaset
 kubectl get replicaset frontend -o yaml
 
 
+cluster OIDC: https://oidc.eks.us-east-1.amazonaws.com/id/87DA3921190990DCFF161C615A70C9C5
+Cluster IAM role ARN
+arn:aws:iam::041445559784:role/AmazonEKSAutoClusterRole
+Cluster ARN
+arn:aws:eks:us-east-1:041445559784:cluster/eks
+API server endpoint
+https://87DA3921190990DCFF161C615A70C9C5.sk1.us-east-1.eks.amazonaws.com
+
+
 
