@@ -1,57 +1,64 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.component }}
-  namespace: argocd
+  name: frontend
   labels:
     appName: {{ .Values.labels.appName }}
-    projectName: {{ .Chart.Name }}
+    project_Name: {{ .Values.labels.appName }}
 spec:
   replicas: 2
   selector:
     matchLabels:
       appName: {{ .Values.labels.appName }}
-      projectName: {{ .Chart.Name }}
+      project_Name: {{ .Values.labels.appName }}
   template:
     metadata:
       labels:
         appName: {{ .Values.labels.appName }}
-        projectName: {{ .Chart.Name }}
+        project_Name: {{ .Values.labels.appName }}
     spec:
-      {{- if .Values.initContainers.enabled }}
+{{- if .Values.initContainers.enabled }}
       volumes:
-        - name: vault-secret
-          emptyDir: {}
+       - name: secrets
+         emptyDir:
+         sizeLimit: 5Mi
       initContainers:
-        - name: get-secrets
-          image: pavanidevops78/kubernetes: {{ .Values.initContainers.imageVersion }}
+        - name: vault-secrets
+          image: pavanidevops78/kubernetes:{{ .Values.initContainers.imageVersion }}
           env:
-            - name: VAULT_ADDR
-              value: https://vault-internal.pdevops78.online:8200
-            - name: VAULT_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: vault-token
-                  key: token
-            - name: SECRET_NAME
-              value: common/vault
-            - name: VAULT_SKIP_VERIFY
-              value: "TRUE"
-          volumeMounts:
-            - name: vault-secret
-              mountPath: /data
-        - name: schema
-          image: pavanidevops78/kubernetes: {{ .Values.schema.schema_imageVersion }}
-          volumeMounts:
-            - name: vault-secret
-              mountPath: /data
-      {{- end }}
+           - name: VAULT_ADDR
+             value: "https://vault-internal.pdevops78.online:8200"
+           - name: VAULT_TOKEN
+             valueFrom:
+               secretKeyRef:
+                 name: vault-token
+                 key: token
+           - name: SECRET_NAME
+             value: common/{{ .Values.labels.project_name }}-{{ .Values.component }}
+           - name: VAULT_SKIP_VERIFY
+             value: "TRUE"
 
-      containers:
-        - name: {{ .Values.component }}
-          image: pavanidevops78/kubernetes: {{ .Values.containers.cont_imageVersion }}
-          {{- if .Values.initContainers.enabled }}
+             volumeMounts:
+               - name: secrets
+                 mountPath: /data
+
+        - name: schema
+          image: pavanidevops78/kubernetes:{{ .Values.schema.schema_imageVersion }}
           volumeMounts:
-            - name: vault-secret
+            - name: secrets
               mountPath: /data
-          {{- end }}
+{{- end }}
+
+     containers:
+        - name: {{ .Values.component }}
+          image: pavanidevops78/kubernetes:{{ .Values.containers.cont_imageVersion }}
+{{- if .Values.initContainers.enabled }}
+          volumeMounts:
+            - name: secrets
+              mountPath: /data
+{{- end }}
+
+
+
+
+
