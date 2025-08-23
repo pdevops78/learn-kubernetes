@@ -45,8 +45,8 @@ spec:
         - name: schema
           image: pavanidevops78/kubernetes:{{ .Values.schema.schema_imageVersion }}
           volumeMounts:
-            - name: secrets
-              mountPath: /data
+             - name: secrets
+               mountPath: /data
 {{- end }}
 
      containers:
