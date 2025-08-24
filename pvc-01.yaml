@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: custom-ebs-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi       # 👈 Requesting 50Gi instead of 20Gi
+  storageClassName: gp3   # or gp2, depending on your cluster
