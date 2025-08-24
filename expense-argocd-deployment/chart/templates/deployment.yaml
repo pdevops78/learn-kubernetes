@@ -17,7 +17,7 @@ spec:
         appName: {{ .Values.labels.appName }}
         project_Name: {{ .Values.labels.appName }}
     spec:
-    {{ - if .Values.initContainers.enabled }}
+    {{- if .Values.initContainers.enabled }}
       volumes:
         - name: secrets
           emptyDir:
@@ -46,13 +46,13 @@ spec:
           volumeMounts:
             - name: secrets
               mountPath: /data
-    {{ - end }}
+    {{- end }}
 
       containers:
        - name: {{ .Values.component }}
          image: pavanidevops78/kubernetes:{{ .Values.containers.cont_imageVersion }}
-      {{ - if .Values.initContainers.enabled }}
+      {{- if .Values.initContainers.enabled }}
          volumeMounts:
           - name: secrets
             mountPath: /data
-    {{ - end }}
+    {{- end }}
