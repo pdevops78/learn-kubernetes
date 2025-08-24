@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
+  name: {{ .Values.component }}
   labels:
     appName: {{ .Values.labels.appName }}
     project_Name: {{ .Values.labels.appName }}
