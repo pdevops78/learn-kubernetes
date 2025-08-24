@@ -3,9 +3,6 @@ source = "./module/eks"
 subnet_id = module.VPC.backend
 env                          = "dev"
 vpc_id    = module.VPC.vpc_id
-subnet_id = module.VPC.frontend
-subnet_id = module.VPC.db
-subnet_id = module.VPC.public
 }
 
 module "VPC"{
