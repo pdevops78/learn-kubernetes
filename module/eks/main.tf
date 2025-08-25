@@ -63,3 +63,10 @@ resource "aws_security_group" "sg" {
      Name = "${var.env}-lt"
    }
   }
+
+#  add dynamically ebs volume required add-on plugin
+# resource "aws_eks_addon" "example" {
+#   cluster_name = aws_eks_cluster.cluster.name
+#   addon_name   = "vpc-cni"
+#   resolve_conflicts_on_update = "OVERWRITE"
+# }

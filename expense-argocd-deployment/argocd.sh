@@ -6,7 +6,7 @@ if [ $1 == "install" ]; then
   sleep 2
   echo ${kubectl get svc argocd-server  -n argocd | awk '{print $4}' | tail -1}
   echo admin
-  echo ${argocd admin initial-password -n argocd} | head -1
+  echo ${argocd admin initial-password -n argocd} | head -1}
 
   #kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d
 fi

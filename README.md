@@ -131,3 +131,21 @@ https://87DA3921190990DCFF161C615A70C9C5.sk1.us-east-1.eks.amazonaws.com
 
 
 
+
+for prometheus:
+================
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm search repo prometheus-community
+helm install prometheus prometheus-community/kube-prometheus-stack
+
+NGINX ingress:
+==============
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm show values ingress-nginx/ingress-nginx > custom-values.yaml
+helm upgrade --install nginx-ingress ingress-nginx/ingress-nginx -f custom-values.yaml
+// add  custom-values.yaml (about LoadBalancer NLB)
+
+
+
+
+
