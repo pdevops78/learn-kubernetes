@@ -70,3 +70,15 @@ resource "aws_security_group" "sg" {
 #   addon_name   = "vpc-cni"
 #   resolve_conflicts_on_update = "OVERWRITE"
 # }
+
+# install prometheus through helm chart
+resource "helm_release" "prometheus" {
+  name       = "prometheus"
+  namespace  = "argocd"
+  chart      = "prometheus"
+  repository = "https://prometheus-community.github.io/helm-charts"
+  create_namespace = true
+  values = [
+    file("prometheus-values.yaml") # Optional custom values
+  ]
+}
