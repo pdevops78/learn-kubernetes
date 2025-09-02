@@ -81,36 +81,7 @@ resource "helm_release" "external-dns" {
 
   }
 }
-#  create a  serviceaccount with name ebs-csi
-resource "helm_release" "ebs-csi"{
-   depends_on     =    [null_resource.aws-auth,aws_iam_role_policy.ebs-csi-driver]
-   name           =   "ebs-csi"
-   repository     =   "https://kubernetes-sigs.github.io/aws-ebs-csi-driver/"
-   chart          =   "ebs-csi"
-   version        =   "v1.42.0"
-   namespace      =   "default"
 
-   set {
-    name          = "serviceAccount.name"
-    value         = "ebs-csi"
-   }
-}
-
-
-# create a  serviceaccount with name auto-scaler
-resource "helm_release" "auto-scaler"{
-   depends_on       =     [null_resource.aws-auth,aws_iam_role_policy.ebs-csi-driver]
-   name             =     "auto-scaler"
-   repository       =     "https://kubernetes.github.io/autoscaler"
-   chart            =     "ebs-csi"
-   version          =      "9.14.0"
-   namespace        =      "default"
-
-   set {
-    name            =      "serviceAccount.name"
-    value           =      "auto-scaler"
-   }
-}
 
 
 
