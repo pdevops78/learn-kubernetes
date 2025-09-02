@@ -82,26 +82,11 @@ EOF
 
 #  install external-dns
 resource "helm_release" "external_dns" {
-  name       = "external-dns"
+  name       = "external-dns-${var.env}"
   namespace  = "default"
   repository = "https://kubernetes-sigs.github.io/external-dns/"
   chart      = "external-dns"
   version    = "1.17.0"
-
-  set {
-    name  = "provider"
-    value = "aws"
-  }
-
-  set {
-    name  = "serviceAccount.create"
-    value = "false"
-  }
-
-  set {
-    name  = "serviceAccount.name"
-    value = "dns-sa"
-  }
 }
 
 
