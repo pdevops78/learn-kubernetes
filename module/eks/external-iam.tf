@@ -27,18 +27,7 @@ resource "aws_iam_role" "external_dns" {
   name = "external-dns"
   assume_role_policy = data.aws_iam_policy_document.external_role.json
 }
-# create a kubernet service account
-resource "kubernetes_service_account" "external_dns" {
-  metadata {
-    name      = "dns-sa"               #  Service account name
-    namespace = "kube-system"          # Namespace where pods are deployed
 
-    annotations = {
-      "eks.amazonaws.com/role-arn" = aws_iam_role.external_dns.arn
-      # Link this SA to IAM Role via IRSA
-    }
-  }
-}
 resource "aws_iam_role_policy" "externaldns_node_policy" {
   name = "external-dns-role-policy"
   role = aws_iam_role.external_dns.id

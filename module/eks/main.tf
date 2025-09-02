@@ -80,15 +80,7 @@ EOF
 #   resolve_conflicts_on_update = "OVERWRITE"
 # }
 
-#  install external-dns
-# resource "helm_release" "external_dns" {
-#   depends_on = [null_resource.aws-auth,aws_iam_role_policy.externaldns_node_policy]
-#   name       = "external-dns-${var.env}"
-#   namespace  = "default"
-#   repository = "https://kubernetes-sigs.github.io/external-dns/"
-#   chart      = "external-dns"
-#   version    = "1.17.0"
-# }
+
 
 # eks addon is a pod identity agent to link both service account and iam role
 # it is just like connection or enable or highlight which two links
@@ -104,7 +96,7 @@ resource "aws_eks_addon" "eks-pod-identity-agent" {
 resource "aws_eks_pod_identity_association" "external--pod-association" {
   cluster_name    = aws_eks_cluster.cluster.name
   namespace       = "default"
-  service_account = kubernetes_service_account.external_dns.metadata[0].name
+  service_account = "external-dns"
   role_arn        = aws_iam_role.external_dns.arn
 }
 
