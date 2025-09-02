@@ -72,16 +72,16 @@ resource "aws_security_group" "sg" {
 # }
 
 # install prometheus through helm chart
-resource "helm_release" "prometheus" {
-  name       = "prometheus"
-  namespace  = "argocd"
-  chart      = "prometheus"
-  repository = "https://prometheus-community.github.io/helm-charts"
-  create_namespace = true
-  values = [
-    file("prometheus-values.yaml") # Optional custom values
-  ]
-}
+# resource "helm_release" "prometheus" {
+#   name       = "prometheus"
+#   namespace  = "argocd"
+#   chart      = "prometheus"
+#   repository = "https://prometheus-community.github.io/helm-charts"
+#   create_namespace = true
+#   values = [
+#     file("prometheus-values.yaml") # Optional custom values
+#   ]
+# }
 #  install external-dns
 resource "helm_release" "external_dns" {
   name       = "external-dns"
