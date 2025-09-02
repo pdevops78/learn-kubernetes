@@ -63,7 +63,15 @@ resource "aws_security_group" "sg" {
      Name = "${var.env}-lt"
    }
   }
-
+resource "null_resource" "aws-auth" {
+  depends_on = [aws_eks_node_group.node]
+  provisioner "local-exec" {
+    command = <<EOF
+aws eks update-kubeconfig --name "${var.env}-eks"
+aws-auth upsert --maproles --rolearn arn:aws:iam::041445559784:role/workstattion_role --username system:node:{{EC2PrivateDNSName}} --groups system:masters
+EOF
+  }
+}
 #  add dynamically ebs volume required add-on plugin
 # resource "aws_eks_addon" "example" {
 #   cluster_name = aws_eks_cluster.cluster.name
@@ -71,29 +79,20 @@ resource "aws_security_group" "sg" {
 #   resolve_conflicts_on_update = "OVERWRITE"
 # }
 
-# install prometheus through helm chart
-# resource "helm_release" "prometheus" {
-#   name       = "prometheus"
-#   namespace  = "argocd"
-#   chart      = "prometheus"
-#   repository = "https://prometheus-community.github.io/helm-charts"
-#   create_namespace = true
-#   values = [
-#     file("prometheus-values.yaml") # Optional custom values
-#   ]
-# }
 #  install external-dns
-resource "helm_release" "external_dns" {
+resource "helm_release" "external-dns" {
+  depends_on = [null_resource.aws-auth,aws_iam_role_policy.externaldns_node_policy]
   name       = "external-dns"
-  namespace  = "kube-system"
   repository = "https://kubernetes-sigs.github.io/external-dns/"
   chart      = "external-dns"
-  set = [
-    {
-      name  = "serviceAccount.name"
-      value = "dns-sa"
-    }
-  ]
+  version    = "1.14.5"
+  namespace = "default"
+
+  set {
+    name  = "serviceAccount.name"
+    value = "dns-sa"
+
+  }
 }
 
 
