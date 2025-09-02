@@ -52,20 +52,6 @@ resource "kubernetes_service_account" "external_dns" {
   }
 }
 
-# resource "aws_eks_pod_identity_association" "ebs-csi-driver" {
-#   cluster_name    = aws_eks_cluster.cluster.name
-#   namespace       = "default"
-#   service_account = "ebs-csi"
-#   role_arn        = aws_iam_role.external-dns.arn
-# }
-
-resource "aws_eks_pod_identity_association" "auto-scaler" {
-  cluster_name    = aws_eks_cluster.cluster.name
-  namespace       = "default"
-  service_account = "auto-scaler"
-  role_arn        = aws_iam_role.external-dns.arn
-}
-
 #  create a pod and serviceaccount name with external-dns
 resource "helm_release" "external-dns" {
   depends_on = [null_resource.aws-auth,aws_iam_role_policy.external_dns_policy]
@@ -74,12 +60,12 @@ resource "helm_release" "external-dns" {
   chart      = "external-dns"
   version    = "1.14.5"
   namespace = "default"
-
-  set {
-    name  = "serviceAccount.name"
-    value = "dns-sa"
-
-  }
+#
+#   set {
+#     name  = "serviceAccount.name"
+#     value = "dns-sa"
+#
+#   }
 }
 
 
