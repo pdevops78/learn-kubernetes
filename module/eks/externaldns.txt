@@ -56,3 +56,12 @@ resource "helm_release" "external-dns" {
 
   }
 }
+
+
+
+Install the Amazon EKS Pod Identity Agent to use EKS Pod Identity to grant AWS Identity and Access Management (IAM) permissions to pods through Kubernetes service accounts
+Applications in a pod's containers can use an AWS SDK or the AWS CLI to make API requests to AWS services using AWS Identity and Access Management (IAM) permissions. Applications must sign their AWS API requests with AWS credentials. Amazon EKS Pod Identity associations provide the ability to manage credentials for your applications, similar to the way that Amazon EC2 instance profiles provide credentials to Amazon EC2 instances. Instead of creating and distributing your AWS credentials to the containers or using the Amazon EC2 instance's role, you associate an IAM role with a Kubernetes service account and configure your pods to use the service account.
+
+Pod Identity is a simpler method than IAM Roles for Service Accounts, as this method doesn't use OIDC identity providers. You can configure a role for Pod Identity once, and reuse it across clusters.
+
+Each association maps a role to a service account in a namespace in the specified cluster. If you have the same application in multiple clusters, you can make identical associations in each cluster without modifying the trust policy of the role.
