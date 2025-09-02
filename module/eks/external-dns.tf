@@ -1,9 +1,8 @@
 resource "helm_release" "external-dns" {
   depends_on = [null_resource.aws-auth,aws_iam_role_policy.external_dns_policy]
   name       = "external-dns"
-  repository = "https://kubernetes-sigs.github.io/external-dns/"
+  repository = "https://charts.bitnami.com/bitnami"
   chart      = "external-dns"
-  version    = "1.14.5"
   namespace = "default"
 
   set {
