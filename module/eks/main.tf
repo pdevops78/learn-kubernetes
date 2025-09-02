@@ -88,7 +88,7 @@ resource "helm_release" "external-dns" {
   version    = "1.14.5"
   namespace = "default"
 
-  set {
+  set = {
     name  = "serviceAccount.name"
     value = "dns-sa"
 
