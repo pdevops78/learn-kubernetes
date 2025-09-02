@@ -81,13 +81,13 @@ EOF
 # }
 
 #  install external-dns
-# resource "helm_release" "external_dns" {
-#   name       = "external-dns-${var.env}"
-#   namespace  = "default"
-#   repository = "https://kubernetes-sigs.github.io/external-dns/"
-#   chart      = "external-dns"
-#   version    = "1.17.0"
-# }
+resource "helm_release" "external_dns" {
+  name       = "external-dns-${var.env}"
+  namespace  = "default"
+  repository = "https://kubernetes-sigs.github.io/external-dns/"
+  chart      = "external-dns"
+  version    = "1.17.0"
+}
 
 # eks addon is a pod identity agent to link both service account and iam role
 # it is just like connection or enable or highlight which two links
