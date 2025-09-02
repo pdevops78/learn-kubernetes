@@ -85,7 +85,6 @@ resource "helm_release" "external_dns" {
   namespace  = "kube-system"
   repository = "https://kubernetes-sigs.github.io/external-dns/"
   chart      = "external-dns"
-  version    = "1.14.5"
 
    set = {
     name  = "serviceAccount.name"
