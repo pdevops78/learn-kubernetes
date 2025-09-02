@@ -67,11 +67,12 @@ resource "null_resource" "aws-auth" {
   depends_on = [aws_eks_node_group.node]
   provisioner "local-exec" {
     command = <<EOF
-aws eks update-kubeconfig --name "${var.env}-eks"
-aws-auth upsert --maproles --rolearn arn:aws:iam::041445559784:role/workstattion_role --username system:node:{{EC2PrivateDNSName}} --groups system:masters
+aws eks update-kubeconfig --name "eks-cluster-${var.env}"
+
 EOF
   }
 }
+# aws-auth upsert --maproles --rolearn arn:aws:iam::041445559784:role/workstattion_role --username system:node:{{EC2PrivateDNSName}} --groups system:masters
 #  add dynamically ebs volume required add-on plugin
 # resource "aws_eks_addon" "example" {
 #   cluster_name = aws_eks_cluster.cluster.name
@@ -80,14 +81,30 @@ EOF
 # }
 
 #  install external-dns
-# resource "helm_release" "external_dns" {
-#   depends_on = [null_resource.aws-auth,aws_iam_role_policy.externaldns_node_policy]
-#   name       = "external-dns"
-#   namespace  = "default"
-#   repository = "https://kubernetes-sigs.github.io/external-dns/"
-#   chart      = "external-dns"
-#   version    = "1.14.5"
-# }
+resource "helm_release" "external_dns" {
+  name       = "external-dns"
+  namespace  = "default"
+  repository = "https://kubernetes-sigs.github.io/external-dns/"
+  chart      = "external-dns"
+  version    = "1.17.0"
+
+  set {
+    name  = "provider"
+    value = "aws"
+  }
+
+  set {
+    name  = "serviceAccount.create"
+    value = "false"
+  }
+
+  set {
+    name  = "serviceAccount.name"
+    value = "dns-sa"
+  }
+}
 
 
 
+
+# helm install external-dns external-dns/external-dns --version 1.17.0 --namespace default --create-namespace
