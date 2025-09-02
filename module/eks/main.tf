@@ -68,17 +68,10 @@ resource "null_resource" "aws-auth" {
   provisioner "local-exec" {
     command = <<EOF
 aws eks update-kubeconfig --name "eks-cluster-${var.env}"
-
 EOF
   }
 }
-# aws-auth upsert --maproles --rolearn arn:aws:iam::041445559784:role/workstattion_role --username system:node:{{EC2PrivateDNSName}} --groups system:masters
-#  add dynamically ebs volume required add-on plugin
-# resource "aws_eks_addon" "example" {
-#   cluster_name = aws_eks_cluster.cluster.name
-#   addon_name   = "vpc-cni"
-#   resolve_conflicts_on_update = "OVERWRITE"
-# }
+
 
 
 
