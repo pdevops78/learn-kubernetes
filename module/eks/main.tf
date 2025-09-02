@@ -89,8 +89,9 @@ resource "helm_release" "external-dns" {
   namespace = "default"
 
   set = {
-    name  = "serviceAccount.name"
-    value = "dns-sa"
+    "provider"               = "aws"
+    "serviceAccount.create"  = "false"
+    "serviceAccount.name"    = kubernetes_service_account.external_dns.metadata.name
 
   }
 }
