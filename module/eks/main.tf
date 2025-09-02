@@ -93,12 +93,12 @@ resource "aws_eks_addon" "eks-pod-identity-agent" {
   resolve_conflicts_on_create = "OVERWRITE"
 }
 
-resource "aws_eks_pod_identity_association" "external--pod-association" {
-  cluster_name    = aws_eks_cluster.cluster.name
-  namespace       = "default"
-  service_account = "external-dns"
-  role_arn        = aws_iam_role.external-dns.arn
-}
+# resource "aws_eks_pod_identity_association" "external--pod-association" {
+#   cluster_name    = aws_eks_cluster.cluster.name
+#   namespace       = "default"
+#   service_account = "external-dns"
+#   role_arn        = aws_iam_role.external-dns.arn
+# }
 
 
 # helm install external-dns external-dns/external-dns --version 1.17.0 --namespace default --create-namespace
