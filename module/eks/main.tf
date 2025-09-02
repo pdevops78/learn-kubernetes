@@ -82,23 +82,5 @@ EOF
 
 
 
-# eks addon is a pod identity agent to link both service account and iam role
-# it is just like connection or enable or highlight which two links
-resource "aws_eks_addon" "eks-pod-identity-agent" {
-  depends_on                  = [aws_eks_node_group.node]
-  cluster_name                = aws_eks_cluster.cluster.name
-  addon_name                  = "eks-pod-identity-agent"
-  addon_version               = "v1.3.2-eksbuild.2"
-  resolve_conflicts_on_update = "OVERWRITE"
-  resolve_conflicts_on_create = "OVERWRITE"
-}
-
-# resource "aws_eks_pod_identity_association" "external--pod-association" {
-#   cluster_name    = aws_eks_cluster.cluster.name
-#   namespace       = "default"
-#   service_account = "external-dns"
-#   role_arn        = aws_iam_role.external-dns.arn
-# }
 
 
-# helm install external-dns external-dns/external-dns --version 1.17.0 --namespace default --create-namespace
