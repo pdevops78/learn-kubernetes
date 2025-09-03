@@ -57,6 +57,8 @@ resource "helm_release" "external-dns" {
   }
 }
 
+install helm chart: helm install external-dns external-dns/external-dns --namespace kube-system  --set serviceAccount.create=false --set serviceAccount.name=external-dns
+
 
 
 Install the Amazon EKS Pod Identity Agent to use EKS Pod Identity to grant AWS Identity and Access Management (IAM) permissions to pods through Kubernetes service accounts
