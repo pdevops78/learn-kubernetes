@@ -83,29 +83,29 @@ resource "kubernetes_service_account" "external_dns-sa" {
   }
 }
 
-# install external-dns through helm-chart
-resource "helm_release" "external_dns" {
-  depends_on       = [aws_eks_cluster.cluster,aws_eks_node_group.node]
-  name             = "external-dns"
-  repository       = " https://kubernetes-sigs.github.io/external-dns"
-  chart            = "external-dns"
-  namespace        = "default"
-  version          = "1.18.0"
-  create_namespace = false
-  set {
-    name  = "provider"
-    value = "aws"
-  }
-  set {
-    name  = "serviceAccount.create"
-    value = false
-  }
-  set {
-    name  = "serviceAccount.name"
-    value = "dns-sa"
-  }
-
-}
+# # install external-dns through helm-chart
+# resource "helm_release" "external_dns" {
+#   depends_on       = [aws_eks_cluster.cluster,aws_eks_node_group.node]
+#   name             = "external-dns"
+#   repository       = " https://kubernetes-sigs.github.io/external-dns"
+#   chart            = "external-dns"
+#   namespace        = "default"
+#   version          = "1.18.0"
+#   create_namespace = false
+#   set {
+#     name  = "provider"
+#     value = "aws"
+#   }
+#   set {
+#     name  = "serviceAccount.create"
+#     value = false
+#   }
+#   set {
+#     name  = "serviceAccount.name"
+#     value = "dns-sa"
+#   }
+#
+# }
 
 #  install prometheus
 resource "helm_release" "kube_prometheus_stack" {
@@ -120,14 +120,14 @@ resource "helm_release" "kube_prometheus_stack" {
 
 #  install autoscaling group
 
-resource "helm_release" "cluster_autoscaler" {
-  depends_on = [aws_eks_cluster.cluster, aws_eks_node_group.node]
-  name       = "cluster-autoscaler"
-  repository = " https://kubernetes.github.io/autoscaler"
-  namespace  = "default"
-  chart      = "cluster-autoscaler"
-  version    = "9.29.1"
-}
+# resource "helm_release" "cluster_autoscaler" {
+#   depends_on = [aws_eks_cluster.cluster, aws_eks_node_group.node]
+#   name       = "cluster-autoscaler"
+#   repository = " https://kubernetes.github.io/autoscaler"
+#   namespace  = "default"
+#   chart      = "cluster-autoscaler"
+#   version    = "9.29.1"
+# }
 
 
 
