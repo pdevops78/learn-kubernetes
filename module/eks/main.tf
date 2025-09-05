@@ -67,7 +67,8 @@ resource "null_resource" "aws-auth" {
   depends_on = [aws_eks_node_group.node]
   provisioner "local-exec" {
     command = <<EOF
-aws eks update-kubeconfig --name "eks-cluster-${var.env}"
+    aws eks update-kubeconfig --name "eks-cluster-${var.env}"
+    aws-auth upsert --maproles --rolearn arn:aws:iam::041445559784:role/workstattion_role --username system:node:{{EC2PrivateDNSName}} --groups system:masters
 EOF
   }
 }
