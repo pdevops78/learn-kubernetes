@@ -113,7 +113,7 @@ resource "helm_release" "kube_prometheus_stack" {
   name             = "kube-prometheus"
   repository       = "https://prometheus-community.github.io/helm-charts"
   chart            = "kube-prometheus-stack"
-  namespace        = default
+  namespace        = "default"
   version          = "57.0.3"
   create_namespace = false
 }
