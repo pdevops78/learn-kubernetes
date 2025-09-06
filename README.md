@@ -70,6 +70,8 @@ steps:
 11. docker run -e url=google.com docker.io/redhat/ubi9 env
 12. add newrelic: latest in package.json, once install through package.json no need to install as a package manager in ansible
 13. docker run -it docker.io/node bash
+14. docker run -it docker.io/nginx bash
+
 14. 
 
 
