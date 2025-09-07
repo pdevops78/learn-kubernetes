@@ -132,7 +132,7 @@ API server endpoint
 https://87DA3921190990DCFF161C615A70C9C5.sk1.us-east-1.eks.amazonaws.com
 
 
-
+vault kv get $SECRET_NAME |sed -n -e '/= Data =/,$p' | grep -Ev '= Data =|^Key|^--'| awk '{print "export "$1"=\""$2"\""}' >
 
 for prometheus:
 ================
@@ -148,7 +148,8 @@ helm upgrade --install nginx-ingress ingress-nginx/ingress-nginx -f custom-value
 // add  custom-values.yaml (about LoadBalancer NLB)
 
 
-
+#  kubectl describe svc frontend
+kubectl get pods -o wide
 
 Details
 API server endpoint
