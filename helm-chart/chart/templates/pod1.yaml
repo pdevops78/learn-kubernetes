@@ -1,50 +1,50 @@
-apiVersion: v1
-kind: Pod
-metadata:
-  name: {{ .Values.metadata.component }}
-  labels:
-    appName: {{ .Values.selector.appName }}
-    projectName: {{ .Chart.Name }}
-
-spec:
-
-  volumes:
-    - name: vault-secret
-      emptyDir: { }
-  initContainers:
-    - name: get-secrets
-      image: public.ecr.aws/u4j6q5s8/kubernetes-vault-init-container:1.2
-      env:
-        - name: VAULT_ADDR
-          value: https://vault-internal.pdevops72.online:8200
-        - name: VAULT_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: vault-token
-              key: token
-        - name: SECRET_NAME
-          value: common/vault
-        - name: VAULT_SKIP_VERIFY
-          value: "TRUE"
-      volumeMounts:
-        - name: vault-secret
-          mountPath: /data
-    - name: schema
-      image: public.ecr.aws/u4j6q5s8/backend-schema:1.4
-      volumeMounts:
-        - name: vault-secret
-          mountPath: /data
-
-
-  containers:
-    - name: {{ .Values.containers.name }}
-      image: public.ecr.aws/u4j6q5s8/{{ .Values.metadata.project }}-{{ .Values.metadata.component }}:1.0
-
-      volumeMounts:
-        - name: vault-secret
-          mountPath: /data
-
-
-
-#public.ecr.aws/u4j6q5s8/expense-backend:1.0
-#public.ecr.aws/u4j6q5s8/expense-backend:1.1
+#apiVersion: v1
+#kind: Pod
+#metadata:
+#  name: {{ .Values.metadata.component }}
+#  labels:
+#    appName: {{ .Values.selector.appName }}
+#    projectName: {{ .Chart.Name }}
+#
+#spec:
+#
+#  volumes:
+#    - name: vault-secret
+#      emptyDir: { }
+#  initContainers:
+#    - name: get-secrets
+#      image: public.ecr.aws/u4j6q5s8/kubernetes-vault-init-container:1.2
+#      env:
+#        - name: VAULT_ADDR
+#          value: https://vault-internal.pdevops72.online:8200
+#        - name: VAULT_TOKEN
+#          valueFrom:
+#            secretKeyRef:
+#              name: vault-token
+#              key: token
+#        - name: SECRET_NAME
+#          value: common/vault
+#        - name: VAULT_SKIP_VERIFY
+#          value: "TRUE"
+#      volumeMounts:
+#        - name: vault-secret
+#          mountPath: /data
+#    - name: schema
+#      image: public.ecr.aws/u4j6q5s8/backend-schema:1.4
+#      volumeMounts:
+#        - name: vault-secret
+#          mountPath: /data
+#
+#
+#  containers:
+#    - name: {{ .Values.containers.name }}
+#      image: public.ecr.aws/u4j6q5s8/{{ .Values.metadata.project }}-{{ .Values.metadata.component }}:1.0
+#
+#      volumeMounts:
+#        - name: vault-secret
+#          mountPath: /data
+#
+#
+#
+##public.ecr.aws/u4j6q5s8/expense-backend:1.0
+##public.ecr.aws/u4j6q5s8/expense-backend:1.1
