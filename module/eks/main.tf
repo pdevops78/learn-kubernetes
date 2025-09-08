@@ -4,7 +4,6 @@ resource "aws_eks_cluster" "cluster" {
   vpc_config {
     subnet_ids = var.subnet_id
   }
-
  }
 
  resource "aws_eks_node_group" "node" {
@@ -14,7 +13,6 @@ resource "aws_eks_cluster" "cluster" {
    subnet_ids      =  var.subnet_id
    capacity_type   = "SPOT"
    instance_types  = ["t3.medium"]
-
      launch_template {
        name    = "eks-${var.env}"
        version = "$Latest"
@@ -24,11 +22,9 @@ resource "aws_eks_cluster" "cluster" {
      max_size     = 2
      min_size     = 1
    }
-
    update_config {
      max_unavailable = 1
    }
-
  }
 
  //arn:aws:iam::041445559784:role/eks-cluster-example
