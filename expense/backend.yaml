@@ -31,7 +31,7 @@ spec:
           mountPath: /data
   
     - name: schema
-      image: pavanidevops78/kubernetes:b1
+      image: pavanidevops78/kubernetes:b2
       volumeMounts:
         - name: secrets
           mountPath: /data
@@ -41,7 +41,6 @@ spec:
       volumeMounts:
         - name: secrets
           mountPath: /data
- 
 ---
 apiVersion: v1
 kind: Service
