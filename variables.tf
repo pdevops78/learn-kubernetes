@@ -8,3 +8,5 @@ variable "default_vpc_route_table_id"{}
 variable  "publicServers"{}
 variable  "dbServers"{}
 variable  "backendServers"{}
+variable "rds"{}
+variable "kms_key_id"{}

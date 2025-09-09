@@ -21,3 +21,13 @@ ssl_policy                   = "ELBSecurityPolicy-TLS13-1-3-2021-06"
 kms_key_id                    = "arn:aws:kms:us-east-1:041445559784:key/7d44c002-f50e-4632-ba6f-84b7b512987f"
 volume_type                  = "gp3"
 
+rds = {
+  main = {
+    db_name              =  "mysql"
+    instance_class       =  "db.m5.large"
+    allocated_storage    =  20
+    engine               =  "MySQL"
+    engine_version       =  "5.7.44"
+    family               =  "mysql5.7"
+  }
+}
