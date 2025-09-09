@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: frontend
+  name: backend
   labels:
-    appName: frontend
+    appName: backend
     projectName: expense
 spec:
   volumes:
@@ -12,7 +12,7 @@ spec:
       sizeLimit: 5Mi
   initContainers:
     - name: vault-secrets
-      image: pavanidevops78/kubernetes:""
+      image: pavanidevops78/kubernetes:i1
       env:
         - name: VAULT_ADDR
           value: "https://vault-internal.pdevops78.online:8200"
@@ -31,18 +31,35 @@ spec:
           mountPath: /data
   
     - name: schema
-      image: pavanidevops78/kubernetes:""
+      image: pavanidevops78/kubernetes:b1
       volumeMounts:
         - name: secrets
           mountPath: /data
   containers:
-    - name: frontend
-      image: pavanidevops78/kubernetes:""
+    - name: backend
+      image: pavanidevops78/kubernetes:e1
       volumeMounts:
         - name: secrets
           mountPath: /data
  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    appName: backend
+    projectName: expense
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP
 
+
+# ClusterIP service type is by default
 
 
 
