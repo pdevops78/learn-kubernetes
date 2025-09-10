@@ -29,8 +29,8 @@ module "rds" {
   family                = each.value["family"]
   instance_class        = each.value["instance_class"]
   kms_key_id            = var.kms_key_id
-  server_app_ports      = var.dbServers
-  subnet_id             = module.VPC.backend
+  server_app_ports      = var.backendServers
+  subnet_id             = module.VPC.db
   vpc_id                = module.VPC.vpc_id
   multi_az              = false
   publicly_accessible   = false
@@ -38,4 +38,7 @@ module "rds" {
   storage_type          = true
 
 }
+
+
+
 
