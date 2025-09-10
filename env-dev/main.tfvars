@@ -27,7 +27,7 @@ rds = {
     instance_class       =  "db.t3.micro"
     allocated_storage    =  20
     engine               =  "mysql"
-    engine_version       =  "8.0.36"
+    engine_version       =  "8.0.41"
     family               =  "mysql8.0"
   }
 }
