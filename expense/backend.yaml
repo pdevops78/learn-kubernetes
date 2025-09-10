@@ -7,11 +7,11 @@ metadata:
     projectName: expense
 spec:
   volumes:
-  - name: secrets
-    emptyDir:
-      sizeLimit: 5Mi
+  - name: vault-secret
+    emptyDir: { }
+
   initContainers:
-    - name: vault-secrets
+    - name: get-secret
       image: pavanidevops78/kubernetes:i1
       env:
         - name: VAULT_ADDR
@@ -25,21 +25,21 @@ spec:
           value: common/common
         - name: VAULT_SKIP_VERIFY
           value: "TRUE"
-  
+
       volumeMounts:
         - name: secrets
           mountPath: /data
-  
+
     - name: schema
       image: pavanidevops78/kubernetes:b4
       volumeMounts:
-        - name: secrets
+        - name: vault-secret
           mountPath: /data
   containers:
     - name: backend
       image: pavanidevops78/kubernetes:d5
       volumeMounts:
-        - name: secrets
+        - name: vault-secret
           mountPath: /data
 ---
 apiVersion: v1
@@ -55,7 +55,7 @@ spec:
       protocol: TCP
       port: 80
       targetPort: 8080
-
+  type: ClusterIP
 
 
 # ClusterIP service type is by default
