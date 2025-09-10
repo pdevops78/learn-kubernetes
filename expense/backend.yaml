@@ -12,7 +12,7 @@ spec:
 
   initContainers:
     - name: get-secret
-      image: pavanidevops78/kubernetes:i1
+      image: pavanidevops78/kubernetes:v8
       env:
         - name: VAULT_ADDR
           value: "https://vault-internal.pdevops78.online:8200"
@@ -37,7 +37,7 @@ spec:
           mountPath: /data
   containers:
     - name: backend
-      image: pavanidevops78/kubernetes:d5
+      image: pavanidevops78/kubernetes:x1
       volumeMounts:
         - name: vault-secret
           mountPath: /data
