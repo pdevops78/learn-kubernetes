@@ -71,17 +71,8 @@ steps:
 12. add newrelic: latest in package.json, once install through package.json no need to install as a package manager in ansible
 13. docker run -it docker.io/node bash
 14. docker run -it docker.io/nginx bash
-15. helm status
-16. helm get
-17. helm repo
-18. helm help
-19. helm install "name of the chart" ./helm/
-20. helm list / helm ls
-21. helm uninstall "name of the chart"
-22. when we pass values dynamically use the below command:
-helm install "name of the chart" -f values/frontend.yaml ./helm/
-23. 
 
+14. 
 
 
 
