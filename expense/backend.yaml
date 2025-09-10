@@ -22,7 +22,7 @@ spec:
               name: vault-token
               key: token
         - name: SECRET_NAME
-          value: common/expense-backend
+          value: common/common
         - name: VAULT_SKIP_VERIFY
           value: "TRUE"
   
