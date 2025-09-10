@@ -27,7 +27,7 @@ spec:
           value: "TRUE"
 
       volumeMounts:
-        - name: secrets
+        - name: vault-secret
           mountPath: /data
 
     - name: schema
