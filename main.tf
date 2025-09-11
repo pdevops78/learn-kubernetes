@@ -39,6 +39,10 @@ module "rds" {
 
 }
 
+module "monitoring"{
+  source = "./module/monitoring"
+}
+
 
 
 
