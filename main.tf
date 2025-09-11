@@ -1,12 +1,12 @@
 module "eks" {
-source = "./module/eks"
+source = "module/eks"
 subnet_id = module.VPC.backend
 env                          = "dev"
 vpc_id    = module.VPC.vpc_id
 }
 
 module "VPC"{
-source                       = "./module/VPC"
+source                       = "module/VPC"
 env                          = var.env
 vpc_cidr_block               = var.vpc_cidr_block
 frontendServers              = var.frontendServers
@@ -19,7 +19,7 @@ dbServers                    = var.dbServers
 backendServers               = var.backendServers
 }
 module "rds" {
-  source                = "./module/rds"
+  source                = "module/rds"
   for_each              = var.rds
   allocated_storage     = each.value["allocated_storage"]
   component             = each.value["db_name"]
@@ -40,7 +40,7 @@ module "rds" {
 }
 
 module "monitoring"{
-  source = "./module/monitoring"
+  source = "module/monitoring"
 }
 
 

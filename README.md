@@ -147,7 +147,7 @@ for prometheus:
 ================
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm search repo prometheus-community
-helm install prometheus prometheus-community/kube-prometheus-stack
+helm install pstack prometheus-community/kube-prometheus-stack -f pstack-values.yaml
 
 NGINX ingress:
 ==============
