@@ -5,7 +5,4 @@ resource "helm_release" "prometheus" {
   version    = "77.6.0"
   namespace  = "default"
   create_namespace = false
-  values = [
-    file("pstack-values.yaml")
-  ]
 }
