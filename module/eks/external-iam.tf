@@ -18,9 +18,9 @@ resource "aws_iam_role" "ebs-dns" {
   #   the above assume_role_policy is a trust relationships
 }
 
-resource "aws_iam_role_policy" "external_dns_policy" {
+resource "aws_iam_role_policy" "ebs_dns_policy" {
   name = "ebs-csi"
-  role = aws_iam_role.external-dns.id
+  role = aws_iam_role.ebs-dns.id
   policy = file("${path.module}/ebs-policy.json")
   #   attach policy-external-dns.json to external-dns
 }
