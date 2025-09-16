@@ -1,9 +1,0 @@
-elasticsearch:
-  enabled: true
-  name: elasticsearch
-  version: 8.11.1
-
-kibana:
-  enabled: true
-  name: kibana
-  version: 8.11.1
