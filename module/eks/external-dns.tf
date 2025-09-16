@@ -27,7 +27,7 @@ resource "aws_eks_pod_identity_association" "external--pod-association" {
 resource "aws_eks_pod_identity_association" "ebs-pod-association" {
   cluster_name    = aws_eks_cluster.cluster.name
   namespace       = "default"
-  service_account = "dns-sa"
+  service_account = "ebs-csi-controller-sa"
   role_arn        = aws_iam_role.ebs-dns.arn
 }
 
