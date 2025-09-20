@@ -19,4 +19,6 @@ resource "aws_eks_addon"  "eks_ebs_csi_driver" {
     resolve_conflicts_on_create = "OVERWRITE"
   }
 
+resource "aws" "" {}
+
 
