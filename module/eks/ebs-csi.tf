@@ -23,5 +23,5 @@ resource "aws_eks_pod_identity_association" "ebs--pod-association" {
     cluster_name    = aws_eks_cluster.cluster.name
     namespace       = "kube-system"
     service_account = "ebs-csi-controller-sa"
-    role_arn        = aws_iam_role.external-dns.arn
+    role_arn        = aws_iam_role.ebs_csi_driver.arn
 }
