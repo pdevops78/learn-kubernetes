@@ -19,6 +19,11 @@ resource "aws_eks_addon"  "eks_ebs_csi_driver" {
     resolve_conflicts_on_create = "OVERWRITE"
   }
 
-resource "aws" "" {}
+resource "aws_eks_pod_identity_association" "ebs_pod_association" {
+    cluster_name    = aws_eks_cluster.cluster.name
+    namespace       = "kube-system"
+    service_account = "ebs-csi-controller-sa"
+    role_arn        = aws_iam_role.ebs_csi_driver.arn
+}
 
 
