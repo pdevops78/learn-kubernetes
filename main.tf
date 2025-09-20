@@ -1,23 +1,30 @@
-module "eks" {
-source       = "./module/eks"
-subnet_id    = module.VPC.backend
-env          = "dev"
-vpc_id       = module.VPC.vpc_id
+module "eks1" {
+  source       = "./module/eks"
+  env          = "dev"
+  subnet_id    = "subnet-0e4eadfc446b55f58"
+  vpc_id       = "vpc-02a94ee8944923438"
 }
 
-module "VPC"{
-source                       = "./module/VPC"
-env                          = var.env
-vpc_cidr_block               = var.vpc_cidr_block
-frontendServers              = var.frontendServers
-availability_zone            = var.availability_zone
-default_vpc_id               = var.default_vpc_id
-default_vpc_cidr_block       = var.default_vpc_cidr_block
-default_vpc_route_table_id   = var.default_vpc_route_table_id
-publicServers                = var.publicServers
-dbServers                    = var.dbServers
-backendServers               = var.backendServers
-}
+# module "eks" {
+# source       = "./module/eks"
+# subnet_id    = module.VPC.backend
+# env          = "dev"
+# vpc_id       = module.VPC.vpc_id
+# }
+#
+# module "VPC"{
+# source                       = "./module/VPC"
+# env                          = var.env
+# vpc_cidr_block               = var.vpc_cidr_block
+# frontendServers              = var.frontendServers
+# availability_zone            = var.availability_zone
+# default_vpc_id               = var.default_vpc_id
+# default_vpc_cidr_block       = var.default_vpc_cidr_block
+# default_vpc_route_table_id   = var.default_vpc_route_table_id
+# publicServers                = var.publicServers
+# dbServers                    = var.dbServers
+# backendServers               = var.backendServers
+# }
 # module "rds" {
 #   source                = "./module/rds"
 #   for_each              = var.rds

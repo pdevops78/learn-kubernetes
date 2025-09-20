@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-identity-test
+spec:
+  serviceAccountName: pod-identity-service-account
+  containers:
+    - name: nginx
+      image: nginx

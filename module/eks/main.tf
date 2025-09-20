@@ -31,13 +31,22 @@ resource "aws_eks_cluster" "cluster" {
 
 resource "aws_launch_template" "main" {
   name = "eks-${var.env}"
+  device_name = "/dev/xvda"
+
+#   ebs {
+#     volume_size           = 100
+#     encrypted             = true
+#     kms_key_id            = var.kms_key_id
+#     delete_on_termination = true
+#   }
+}
   tag_specifications {
     resource_type = "instance"
     tags = {
       "Name" = "${aws_eks_cluster.cluster.name}-workernode"
     }
   }
-}
+
 
 resource "null_resource" "aws-auth" {
   depends_on = [aws_eks_node_group.node]
