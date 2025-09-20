@@ -1,7 +1,7 @@
 module "eks1" {
   source       = "./module/eks"
   env          = "dev"
-  subnet_id    = "subnet-0e4eadfc446b55f58"
+  subnet_id    = ["subnet-0e4eadfc446b55f58","subnet-04ce96f612c9d802d"]
   vpc_id       = "vpc-02a94ee8944923438"
 }
 

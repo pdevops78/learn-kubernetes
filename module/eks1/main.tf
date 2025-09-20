@@ -2,7 +2,7 @@ resource "aws_eks_cluster" "cluster" {
   name = "eks-cluster-${var.env}"
   role_arn = aws_iam_role.eks-cluster-role.arn
   vpc_config {
-    subnet_ids = [var.subnet_id]
+    subnet_ids = var.subnet_id
   }
 }
 
@@ -24,7 +24,7 @@ resource "aws_eks_node_group" "node" {
   update_config {
     max_unavailable = 1
   }
-  subnet_ids = [var.subnet_id]
+  subnet_ids = var.subnet_id
 }
 
 //arn:aws:iam::041445559784:role/eks-cluster-example
