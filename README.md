@@ -178,3 +178,10 @@ arn:aws:eks:us-east-1:041445559784:cluster/eks-cluster-dev
 Platform version
 Info
 eks.11
+
+
+elk:
+----
+kubectl get secrets -n elastic-stack
+kubectl get secrets elasticsearch-es-elastic-user -n elastic-stack
+echo "encode" | based64 --decode

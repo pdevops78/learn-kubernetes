@@ -4,6 +4,7 @@ metadata:
   name: pod-identity-test
 spec:
   serviceAccountName: ebs-csi-controller-sa
+
   containers:
     - name: nginx
       image: nginx
