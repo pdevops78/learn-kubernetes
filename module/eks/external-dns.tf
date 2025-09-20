@@ -1,11 +1,9 @@
 resource "helm_release" "external-dns" {
   depends_on = [null_resource.aws-auth,aws_iam_role_policy.external_dns_policy]
   name       = "external-dns"
-  repository = "https://charts.bitnami.com/bitnami"
   chart      = "external-dns"
-  version    = "9.0.3"
-  namespace = "default"
-  create_namespace = true
+  repository = "https://charts.bitnami.com/bitnami"
+  namespace  = "kube-system"
 }
 
 # #  create pod identity and  attach to cluster
