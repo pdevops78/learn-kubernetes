@@ -31,14 +31,6 @@ resource "aws_eks_node_group" "node" {
 
 resource "aws_launch_template" "main" {
   name        = "eks-${var.env}"
-  device_name = "/dev/xvda"
-
-  #   ebs {
-  #     volume_size           = 100
-  #     encrypted             = true
-  #     kms_key_id            = var.kms_key_id
-  #     delete_on_termination = true
-  #   }
   tag_specifications {
     resource_type = "instance"
     tags = {
