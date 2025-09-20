@@ -31,7 +31,7 @@ resource "aws_eks_cluster" "cluster" {
 
 resource "aws_launch_template" "main" {
   name        = "eks-${var.env}"
-  device_name = "/dev/xvda"
+#   device_name = "/dev/xvda"
 
   #   ebs {
   #     volume_size           = 100
