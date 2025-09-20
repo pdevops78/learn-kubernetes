@@ -31,12 +31,15 @@ resource "aws_eks_node_group" "node" {
 
 resource "aws_launch_template" "main" {
   name        = "eks-${var.env}"
-  tag_specifications {
-    resource_type = "instance"
-    tags = {
-      "Name" = "${aws_eks_cluster.cluster.name}-workernode"
+  tag_specifications = [
+    {
+      resource_type = "instance"
+      tags = {
+        Name = "${aws_eks_cluster.cluster.name}-workernode"
+      }
     }
-  }
+  ]
+
 }
 
 resource "null_resource" "aws-auth" {
