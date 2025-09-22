@@ -20,14 +20,13 @@ resource "aws_eks_addon" "autoscaling_pod_identity_agent" {
 }
 
 resource "helm_release" "autoscaler" {
-
-  name       = "eks"
+  name       = aws_eks_cluster.cluster.name
   repository = "https://kubernetes.github.io/autoscaler"
   chart      = "cluster-autoscaler"
   version    = "9.50.1"
   namespace  = "kube-system"
   set {
     name  = "autoDiscovery.clusterName"
-    value = eks
+    value = aws_eks_cluster.cluster.name
   }
 }
